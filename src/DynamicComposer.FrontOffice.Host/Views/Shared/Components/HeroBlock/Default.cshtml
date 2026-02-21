@@ -1,0 +1,9 @@
+@model DynamicComposer.Api.Contracts.HeroBlockDto
+<section>
+    <h2>@Model.Headline</h2>
+    <p>@Model.SubHeadline</p>
+    @if (!string.IsNullOrWhiteSpace(Model.CtaText) && !string.IsNullOrWhiteSpace(Model.CtaUrl))
+    {
+        <a href="@Model.CtaUrl">@Model.CtaText</a>
+    }
+</section>

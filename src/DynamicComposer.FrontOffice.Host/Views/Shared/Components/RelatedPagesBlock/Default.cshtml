@@ -1,0 +1,10 @@
+@model (DynamicComposer.Api.Contracts.RelatedPagesBlockDto block, IReadOnlyCollection<DynamicComposer.Api.Contracts.PageSummaryDto> pages)
+<section>
+    <h3>@Model.block.Heading</h3>
+    <ul>
+        @foreach (var page in Model.pages)
+        {
+            <li><a href="/pages/@page.Id/@page.Slug">@page.Title</a></li>
+        }
+    </ul>
+</section>

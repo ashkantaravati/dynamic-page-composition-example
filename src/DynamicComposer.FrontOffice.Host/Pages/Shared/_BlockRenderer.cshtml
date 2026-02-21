@@ -1,0 +1,23 @@
+@model DynamicComposer.Api.Contracts.PageBlockDto
+
+@switch (Model)
+{
+    case HeroBlockDto hero:
+        @await Component.InvokeAsync("HeroBlock", hero)
+        break;
+    case ContentBlockDto content:
+        @await Component.InvokeAsync("ContentBlock", content)
+        break;
+    case FaqBlockDto faq:
+        @await Component.InvokeAsync("FaqBlock", faq)
+        break;
+    case RelatedPagesBlockDto related:
+        @await Component.InvokeAsync("RelatedPagesBlock", related)
+        break;
+    case FeaturedRelatedPageBlockDto featured:
+        @await Component.InvokeAsync("FeaturedRelatedPageBlock", featured)
+        break;
+    case TwoColumnBlockDto twoColumn:
+        @await Component.InvokeAsync("TwoColumnBlock", twoColumn)
+        break;
+}

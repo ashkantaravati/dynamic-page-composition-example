@@ -1,0 +1,16 @@
+@page "/"
+@model DynamicComposer.FrontOffice.Host.Pages.IndexModel
+@{
+    ViewData["Title"] = "Pages";
+}
+
+<h1>Available pages</h1>
+<div>
+@foreach (var page in Model.Pages)
+{
+    <article>
+        <h2><a asp-page="/PageDetails" asp-route-id="@page.Id" asp-route-slug="@page.Slug">@page.Title</a></h2>
+        <p>@page.Description</p>
+    </article>
+}
+</div>
