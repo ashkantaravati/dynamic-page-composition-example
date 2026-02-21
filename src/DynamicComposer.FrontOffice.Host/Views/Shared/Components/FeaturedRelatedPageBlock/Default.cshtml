@@ -1,0 +1,8 @@
+@model (DynamicComposer.Api.Contracts.FeaturedRelatedPageBlockDto block, DynamicComposer.Api.Contracts.PageDetailsDto? page)
+<section>
+    <h3>@Model.block.Heading</h3>
+    @if (Model.page is not null)
+    {
+        <a href="/pages/@Model.page.Id/@Model.page.Slug">@Model.page.Title</a>
+    }
+</section>

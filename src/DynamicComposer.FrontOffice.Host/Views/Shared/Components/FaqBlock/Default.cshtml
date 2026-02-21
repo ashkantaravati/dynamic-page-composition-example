@@ -1,0 +1,11 @@
+@model DynamicComposer.Api.Contracts.FaqBlockDto
+<section>
+    <h3>@Model.Heading</h3>
+    <dl>
+        @foreach (var item in Model.Items)
+        {
+            <dt>@item.Question</dt>
+            <dd>@item.Answer</dd>
+        }
+    </dl>
+</section>

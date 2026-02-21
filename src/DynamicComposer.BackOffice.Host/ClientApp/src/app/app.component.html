@@ -1,0 +1,37 @@
+<h1>Dynamic Composer BackOffice</h1>
+<button (click)="createNew()">Add page</button>
+
+<section>
+  <h2>Pages</h2>
+  <ul>
+    <li *ngFor="let page of pages">
+      {{ page.title }} ({{ page.slug }})
+      <button (click)="edit(page)">Edit</button>
+      <button (click)="deletePage(page.id)">Delete</button>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>{{ pageId ? 'Edit' : 'Create' }} page</h2>
+  <label>Title <input [(ngModel)]="title" /></label>
+  <label>Slug <input [(ngModel)]="slug" /></label>
+  <label>Meta title <input [(ngModel)]="meta.title" /></label>
+  <label>Meta description <input [(ngModel)]="meta.description" /></label>
+
+  <div>
+    <button (click)="addBlock('content')">Add Content block</button>
+    <button (click)="addBlock('hero')">Add Hero block</button>
+    <button (click)="addBlock('faq')">Add FAQ block</button>
+  </div>
+
+  <div cdkDropList (cdkDropListDropped)="reorder($event)">
+    <div *ngFor="let block of blocks" cdkDrag>
+      <strong>{{ block.type }}</strong>
+      <input [(ngModel)]="block.heading" placeholder="Heading" />
+      <textarea [(ngModel)]="block.body" placeholder="Body"></textarea>
+    </div>
+  </div>
+
+  <button (click)="save()">Save</button>
+</section>

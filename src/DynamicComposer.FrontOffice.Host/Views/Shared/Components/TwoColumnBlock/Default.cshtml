@@ -1,0 +1,18 @@
+@model DynamicComposer.Api.Contracts.TwoColumnBlockDto
+<section>
+    <h3>@Model.Heading</h3>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1rem;">
+        <div>
+            @foreach (var block in Model.MainBlocks.OrderBy(x => x.SortOrder))
+            {
+                @await Html.PartialAsync("_BlockRenderer", block)
+            }
+        </div>
+        <aside>
+            @foreach (var block in Model.AsideBlocks.OrderBy(x => x.SortOrder))
+            {
+                @await Html.PartialAsync("_BlockRenderer", block)
+            }
+        </aside>
+    </div>
+</section>

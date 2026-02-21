@@ -1,0 +1,23 @@
+@page "/pages/{id:guid}/{slug}"
+@model DynamicComposer.FrontOffice.Host.Pages.PageDetailsModel
+@{
+    ViewData["Title"] = Model.PageDetails?.MetaData.Title ?? Model.PageDetails?.Title;
+}
+
+@section Meta {
+    <meta name="description" content="@Model.PageDetails?.MetaData.Description" />
+    <meta name="keywords" content="@Model.PageDetails?.MetaData.Keywords" />
+}
+
+@if (Model.PageDetails is null)
+{
+    <p>Page not found.</p>
+}
+else
+{
+    <h1>@Model.PageDetails.Title</h1>
+    @foreach (var block in Model.PageDetails.Blocks.OrderBy(x => x.SortOrder))
+    {
+        @await Html.PartialAsync("_BlockRenderer", block)
+    }
+}
