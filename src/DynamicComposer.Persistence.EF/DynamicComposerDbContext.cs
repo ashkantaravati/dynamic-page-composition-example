@@ -1,5 +1,6 @@
 using System.Text.Json;
 using DynamicComposer.Domain;
+using DynamicComposer.Domain.PageBlocks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -32,7 +33,7 @@ public sealed class DynamicComposerDbContext(DbContextOptions<DynamicComposerDbC
                 .HasColumnName("BlocksJson")
                 .HasConversion(new ValueConverter<List<PageBlock>, string>(
                     blocks => JsonSerializer.Serialize(blocks, jsonOptions),
-                    json => JsonSerializer.Deserialize<List<PageBlock>>(json, jsonOptions) ?? []));
+                    json => JsonSerializer.Deserialize<List<PageBlock>>(json, jsonOptions) ?? new List<PageBlock>() { }));
         });
     }
 }

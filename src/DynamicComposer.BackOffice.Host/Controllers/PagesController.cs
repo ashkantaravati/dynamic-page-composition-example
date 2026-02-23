@@ -1,5 +1,6 @@
 using DynamicComposer.Api.Contracts;
 using DynamicComposer.Domain;
+using DynamicComposer.Domain.PageBlocks;
 using DynamicComposer.Persistence.EF;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

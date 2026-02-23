@@ -6,11 +6,11 @@
 
 <h1>Available pages</h1>
 <div>
-@foreach (var page in Model.Pages)
+@foreach (var p in Model.Pages)
 {
     <article>
-        <h2><a asp-page="/PageDetails" asp-route-id="@page.Id" asp-route-slug="@page.Slug">@page.Title</a></h2>
-        <p>@page.Description</p>
+            <h2><a asp-page="/PageDetails" asp-route-id="@p.Id" asp-route-slug="@p.Slug">@p.Title</a></h2>
+            <p>@p.Description</p>
     </article>
 }
 </div>

@@ -1,6 +1,8 @@
+using DynamicComposer.Domain.PageBlocks;
+
 namespace DynamicComposer.Domain;
 
-public sealed class Page
+public class Page
 {
     private readonly List<PageBlock> _blocks = [];
 

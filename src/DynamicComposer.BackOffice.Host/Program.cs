@@ -1,13 +1,22 @@
 using DynamicComposer.Persistence.EF;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    WebRootPath = "ClientApp/dist"
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// Use Microsoft's OpenAPI support instead of Swashbuckle
+builder.Services.AddOpenApi();
+
 builder.Services.AddDynamicComposerPersistence(builder.Configuration.GetConnectionString("Default") ?? "Data Source=dynamic-composer.db");
-builder.Services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/dist");
+
+// Note: AddSpaStaticFiles / UseSpaStaticFiles (SpaServices) are optional/deprecated in newer ASP.NET Core versions.
+// Serving the SPA via the web root + static files middleware is the recommended approach.
 
 builder.Services.AddCors(options =>
 {
@@ -27,15 +36,20 @@ using (var scope = app.Services.CreateScope())
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Use Microsoft OpenAPI middleware and UI
+    //app.UseOpenApi();
+    //app.UseOpenApiUI();
 }
 
 app.UseHttpsRedirection();
 app.UseCors("FrontOffice");
+
+// Serve static files from the configured web root ("ClientApp/dist")
 app.UseStaticFiles();
-app.UseSpaStaticFiles();
+
 app.MapControllers();
+
+// Fallback to the SPA entry point (index.html) in the web root
 app.MapFallbackToFile("index.html");
 
 app.Run();

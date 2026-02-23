@@ -2,9 +2,9 @@
 <section>
     <h3>@Model.block.Heading</h3>
     <ul>
-        @foreach (var page in Model.pages)
+        @foreach (var p in Model.pages)
         {
-            <li><a href="/pages/@page.Id/@page.Slug">@page.Title</a></li>
+            <li><a href="/pages/@p.Id/@p.Slug">@p.Title</a></li>
         }
     </ul>
 </section>

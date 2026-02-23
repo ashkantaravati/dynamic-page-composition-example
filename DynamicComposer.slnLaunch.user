@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "e2e",
+    "Projects": [
+      {
+        "Path": "src\\DynamicComposer.BackOffice.Host\\DynamicComposer.BackOffice.Host.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "src\\DynamicComposer.FrontOffice.Host\\DynamicComposer.FrontOffice.Host.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]
